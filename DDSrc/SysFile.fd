@@ -1,0 +1,5 @@
+#REPLACE FILE1 SysFile
+#REPLACE SysFile.Recnum |FN1,0
+#REPLACE SysFile.FuelId |FN1,1
+#REPLACE SysFile.GearboxId |FN1,2
+#REPLACE SysFile.CarId |FN1,3

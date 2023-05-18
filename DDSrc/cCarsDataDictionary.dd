@@ -1,0 +1,45 @@
+﻿Use DataDict.pkg
+
+Open Cars
+Open SysFile
+Open Fuel
+Open Gearbox
+
+Object NumberOfSeats is a ValidationTable
+    Procedure Fill_List
+        Forward Send Fill_List
+        Send Add_Table_Value "1"
+        Send Add_Table_Value "2"
+        Send Add_Table_Value "4"
+        Send Add_Table_Value "5"
+        Send Add_Table_Value "7"
+        Send Add_Table_Value "9"
+    End_Procedure
+End_Object
+
+Class cCarsDataDictionary is a DataDictionary
+    
+    Procedure Construct_Object
+        Forward Send Construct_Object
+        Set Main_File to Cars.File_Number
+
+        Set Add_Server_File to Fuel.File_Number
+        Set Add_Server_File to Gearbox.File_Number
+
+        Set Add_System_File to SysFile.File_Number DD_Lock_On_All
+
+        Set Foreign_Field_Option DD_KEYFIELD DD_NOPUT to True
+        Set Foreign_Field_Option DD_KEYFIELD DD_FINDREQ to True
+        Set Foreign_Field_Option DD_INDEXFIELD DD_NOPUT to True
+        Set Foreign_Field_Option DD_DEFAULT DD_DISPLAYONLY to True
+
+        Set Field_Auto_Increment Field Cars.CarId to File_Field SysFile.CarId
+        Set Key_Field_State Field Cars.CarId to True
+
+        Set Field_Option Field Cars.Model DD_REQUIRED to True
+
+        Set Field_Value_Table Field Cars.NumberOfSeats to NumberOfSeats
+
+    End_Procedure
+
+End_Class
