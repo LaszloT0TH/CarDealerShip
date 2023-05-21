@@ -1,5 +1,5 @@
 Compiling Program: C:\Users\user\Desktop\Apa pendrive\DataFlex\Projects\CarDealerShip\AppSrc\WebApp.src
-Memory Available: 20489973760
+Memory Available: 21932376064
 1>Use AllWebAppClasses.pkg
 Using pre-compiled package ALLWEBAPPCLASSES.PKG
 Including file: AllWebAppClasses.x64.pkd    (C:\Program Files\DataFlex 20.1\Pkg\AllWebAppClasses.x64.pkd)
@@ -1025,6 +1025,7 @@ Including file: Dashboard.wo    (C:\Users\user\Desktop\Apa pendrive\DataFlex\Pro
 35388>>>                End_Procedure
 35389>>>                
 35389>>>            End_Object
+35390>>>            
 35390>>>        End_Object
 35391>>>    
 35391>>>    End_Object
@@ -2017,6 +2018,7 @@ Including file: CarSelect.wo    (C:\Users\user\Desktop\Apa pendrive\DataFlex\Pro
 36227>>>Use cFuelDataDictionary.dd
 36227>>>Use cGearboxDataDictionary.dd
 36227>>>Use cCarsDataDictionary.dd
+36227>>>Use cWebForm.pkg
 36227>>>
 36227>>>Object oCarSelect is a cWebView
 36229>>>    Set psCaption to "Car"
@@ -2034,181 +2036,264 @@ Including file: CarSelect.wo    (C:\Users\user\Desktop\Apa pendrive\DataFlex\Pro
 36241>>>
 36241>>>    Object oCars_DD is a cCarsDataDictionary
 36243>>>        Set DDO_Server To oFuel_DD
-36244>>>        Set DDO_Server To oGearbox_DD
-36245>>>    End_Object 
-36246>>>
-36246>>>    Set Main_DD To oCars_DD
-36247>>>    Set Server  To oCars_DD
-36248>>>
-36248>>>
-36248>>>    Object oList is a cWebList
-36250>>>        Set piColumnSpan to 0
-36251>>>        Set psCSSClass to "MobileList"
-36252>>>        Set pbServerOnRowClick to True
-36253>>>        Set pbFillHeight to True
-36254>>>        Set pbShowHeader to False
-36255>>>        Set piSortColumn to 0
-36256>>>
-36256>>>        Object oCarsCarId is a cWebColumn
-36258>>>            Entry_Item Cars.CarId
-36259>>>            Set psCaption to "Cars.CarId"
-36260>>>            Set piWidth to 100
-36261>>>        End_Object 
-36262>>>
-36262>>>        Object oCarsModel is a cWebColumn
-36264>>>            Entry_Item Cars.Model
-36265>>>            Set psCaption to "Cars.Model"
-36266>>>            Set piWidth to 200
-36267>>>        End_Object 
-36268>>>
-36268>>>        Object oCarsColor is a cWebColumn
-36270>>>            Entry_Item Cars.Color
-36271>>>            Set psCaption to "Cars.Color"
-36272>>>            Set piWidth to 200
-36273>>>        End_Object 
-36274>>>
-36274>>>        Object oFuelFuelName is a cWebColumn
-36276>>>            Entry_Item Fuel.FuelName
-36277>>>            Set psCaption to "Fuel.FuelName"
-36278>>>            Set piWidth to 200
-36279>>>        End_Object 
+36244>>>        Set DDO_Server to oGearbox_DD
+36245>>>        
+36245>>>        // EN
+36245>>>        // Limit the rows to the search value
+36245>>>        // GE
+36245>>>        // Zeilen auf den Suchwert beschränken
+36245>>>        // HU
+36245>>>        // Korlátozza a sorokat a keresési értékre
+36245>>>        Procedure OnConstrain
+36248>>>            String sValue sFilter
+36248>>>            
+36248>>>            // EN
+36248>>>            // The value from whatever was entered. It comes from oWebform1
+36248>>>            // GE
+36248>>>            // Der Wert aus dem, was eingegeben wurde. Es kommt von oWebform1
+36248>>>            // HU
+36248>>>            // Az érték bármiből, amit beírtak. Az oWebform1-ből származik
+36248>>>            WebGet psValue of oWebForm1 to sValue
+36251>>>            Move (Trim(sValue)) to sValue
+36252>>>            If (sValue > "") Begin                
+36254>>>                Move "[CarId] LIKE '%@@%' or [Model] LIKE '%@@%' or [Color] LIKE '%@@%' or [NumberOfSeats] LIKE '%@@%'" to sFilter
+36255>>>                
+36255>>>                // EN
+36255>>>                // Replace all with the value entered by the user
+36255>>>                // GE
+36255>>>                // Alle durch den vom Benutzer eingegebenen Wert ersetzen
+36255>>>                // HU
+36255>>>                // Cserélje le az összeset a felhasználó által beírt értékre
+36255>>>                Move (Replace("@@", sFilter, sValue)) to sFilter
+36256>>>                Move (Replace("@@", sFilter, sValue)) to sFilter
+36257>>>                Move (Replace("@@", sFilter, sValue)) to sFilter
+36258>>>                Move (Replace("@@", sFilter, sValue)) to sFilter
+36259>>>                                                
+36259>>>                // EN
+36259>>>                // In this case, we want to use the PS SQL filter property of the data dictionary to filter automatically
+36259>>>                // GE
+36259>>>                // In diesem Fall möchten wir die PS-SQL-Filtereigenschaft des Datenwörterbuchs zum automatischen Filtern verwenden
+36259>>>                // HU
+36259>>>                // Ebben az esetben az adatszótár PS SQL filter tulajdonságát szeretnénk használni, hogy automatikus szűrjünk
+36259>>>                Set psSQLFilter to sFilter 
+36260>>>                
+36260>>>                // EN
+36260>>>                // We need to configure the data dictionary to use SQL filters
+36260>>>                // GE
+36260>>>                // Wir müssen das Datenwörterbuch für die Verwendung von SQL-Filtern konfigurieren
+36260>>>                // HU
+36260>>>                // Tályékoztatnunk kell az adatszótárt, hogy használjon SQL szűrőket
+36260>>>                Set pbUseDDSQLFilters to True
+36261>>>            End
+36261>>>>
+36261>>>            Else Begin
+36262>>>                Set pbUseDDSQLFilters to False
+36263>>>            End
+36263>>>>
+36263>>>        End_Procedure
+36264>>>    End_Object 
+36265>>>
+36265>>>    Set Main_DD To oCars_DD
+36266>>>    Set Server  To oCars_DD
+36267>>>
+36267>>>    Object oWebForm1 is a cWebForm
+36269>>>        Set piColumnSpan to 0
+36270>>>        Set psLabel to "Search"
+36271>>>        Set peLabelPosition to lpTop
+36272>>>        Set pbPromptButton to True
+36273>>>        Procedure OnPrompt
+36276>>>            // EN
+36276>>>            // When clicked, we rebuild it according to the search conditions
+36276>>>            // so we send the constraints to the data dictionary
+36276>>>            // GE
+36276>>>            // Wenn darauf geklickt wird, erstellen wir es entsprechend den Suchbedingungen neu
+36276>>>            // Also senden wir die Einschränkungen an das Datenwörterbuch
+36276>>>            // HU
+36276>>>            // Kattintásnál újraépítjük a keresési feltéleknek megfelelően
+36276>>>            // ezért elküldjük az adatszótárnak a megszorításokat
+36276>>>            Send Rebuild_Constraints of oCars_DD
+36277>>>            // EN
+36277>>>            // The list must be linked again. We find the first record and then rebuild it.
+36277>>>            // This should be implemented in the data dictionary
+36277>>>            // GE
+36277>>>            // Die Liste muss erneut verknüpft werden. Wir finden den ersten Datensatz und erstellen ihn dann neu.
+36277>>>            // Dies sollte im Datenwörterbuch implementiert werden
+36277>>>            // HU
+36277>>>            // A listát újra össze kell kapcsolni. Megkeressük az első rekordot, majd újraépítjük.
+36277>>>            // Ezt az adatszótárban kell megvalósítani
+36277>>>            Send Find of oCars_DD FIRST_RECORD 1            
+36278>>>        End_Procedure
+36279>>>    End_Object
 36280>>>
-36280>>>        Object oGearboxGearboxName is a cWebColumn
-36282>>>            Entry_Item Gearbox.GearboxName
-36283>>>            Set psCaption to "Gearbox.GearboxName"
-36284>>>            Set piWidth to 100
-36285>>>        End_Object 
-36286>>>
-36286>>>        Object oCarsNumberOfSeats is a cWebColumn
-36288>>>            Entry_Item Cars.NumberOfSeats
-36289>>>            Set psCaption to "Cars.NumberOfSeats"
-36290>>>            Set piWidth to 100
-36291>>>        End_Object 
-36292>>>
-36292>>>        Object oDetailButton is a cWebColumnButton
-36294>>>            Set psCaption to "btn"
-36295>>>            Set piWidth to 45
-36296>>>            Set pbFixedWidth to True
-36297>>>            Set pbResizable to False
-36298>>>            Set piListRowSpan to 1
-36299>>>            Set psBtnCssClass to "WebButtonIcon WebIcon_Info"
-36300>>>            Set peAlign to alignRight
-36301>>>
-36301>>>            WebRegisterPath ntNavigateForward oCarZoom
-36307>>>
-36307>>>            Procedure OnClick
-36310>>>                Send NavigatePath
-36311>>>            End_Procedure
+36280>>>
+36280>>>    Object oList is a cWebList
+36282>>>        Set piColumnSpan to 0
+36283>>>        Set psCSSClass to "MobileList"
+36284>>>        Set pbServerOnRowClick to True
+36285>>>        Set pbFillHeight to True
+36286>>>        Set pbShowHeader to True // Set pbShowHeader to False
+36287>>>        Set piSortColumn to 0
+36288>>>
+36288>>>        Object oCarsCarId is a cWebColumn
+36290>>>            Entry_Item Cars.CarId
+36291>>>            Set psCaption to "Cars.CarId"
+36292>>>            Set piWidth to 100
+36293>>>        End_Object 
+36294>>>
+36294>>>        Object oCarsModel is a cWebColumn
+36296>>>            Entry_Item Cars.Model
+36297>>>            Set psCaption to "Cars.Model"
+36298>>>            Set piWidth to 200
+36299>>>        End_Object 
+36300>>>
+36300>>>        Object oCarsColor is a cWebColumn
+36302>>>            Entry_Item Cars.Color
+36303>>>            Set psCaption to "Cars.Color"
+36304>>>            Set piWidth to 200
+36305>>>        End_Object 
+36306>>>
+36306>>>        Object oFuelFuelName is a cWebColumn
+36308>>>            Entry_Item Fuel.FuelName
+36309>>>            Set psCaption to "Fuel.FuelName"
+36310>>>            Set piWidth to 200
+36311>>>        End_Object 
 36312>>>
-36312>>>            Procedure OnGetNavigateForwardData tWebNavigateData ByRef NavigateData Handle hoToView
-36315>>>                Move True to NavigateData.bReadOnly
-36316>>>            End_Procedure
-36317>>>
+36312>>>        Object oGearboxGearboxName is a cWebColumn
+36314>>>            Entry_Item Gearbox.GearboxName
+36315>>>            Set psCaption to "Gearbox.GearboxName"
+36316>>>            Set piWidth to 100
 36317>>>        End_Object 
 36318>>>
-36318>>>        WebRegisterPath ntNavigateForward oCarZoom
+36318>>>        Object oCarsNumberOfSeats is a cWebColumn
+36320>>>            Entry_Item Cars.NumberOfSeats
+36321>>>            Set psCaption to "Cars.NumberOfSeats"
+36322>>>            Set piWidth to 100
+36323>>>        End_Object 
 36324>>>
-36324>>>        Procedure OnRowClick String sRowId
-36327>>>            tWebNavigateData NavigateData
-36327>>>            tWebNavigateData NavigateData
-36327>>>            Get GetNavigateData to NavigateData
-36328>>>
-36328>>>            Case Begin
-36328>>>                Case (NavigateData.eNavigateType = nfFromParent)
-36330>>>                    Send NavigateForward of oCarZoom Self
-36331>>>                    Case Break
-36332>>>
-36332>>>                Case (NavigateData.eNavigateType = nfFromChild)
-36335>>>                    Send NavigateClose Self
-36336>>>                    Case Break
-36337>>>
-36337>>>                Case (NavigateData.eNavigateType = nfFromMain)
-36340>>>                    Send NavigateClose Self
-36341>>>                    Case Break
-36342>>>
-36342>>>                Case Else // must be nfUndefined
-36342>>>                    Send NavigateForward of oCarZoom Self
-36343>>>
-36343>>>            Case End
-36343>>>        End_Procedure
+36324>>>        Object oDetailButton is a cWebColumnButton
+36326>>>            Set psCaption to "btn"
+36327>>>            Set piWidth to 45
+36328>>>            Set pbFixedWidth to True
+36329>>>            Set pbResizable to False
+36330>>>            Set piListRowSpan to 1
+36331>>>            Set psBtnCssClass to "WebButtonIcon WebIcon_Info"
+36332>>>            Set peAlign to alignRight
+36333>>>
+36333>>>            WebRegisterPath ntNavigateForward oCarZoom
+36339>>>
+36339>>>            Procedure OnClick
+36342>>>                Send NavigatePath
+36343>>>            End_Procedure
 36344>>>
-36344>>>        Procedure OnGetNavigateForwardData tWebNavigateData ByRef NavigateData Handle hoToView
-36347>>>            Move True to NavigateData.bReadOnly
-36348>>>        End_Procedure
+36344>>>            Procedure OnGetNavigateForwardData tWebNavigateData ByRef NavigateData Handle hoToView
+36347>>>                Move True to NavigateData.bReadOnly
+36348>>>            End_Procedure
 36349>>>
-36349>>>    End_Object 
+36349>>>        End_Object 
 36350>>>
-36350>>>    Object oActionGroup is a cWebMenuGroup
-36352>>>
-36352>>>        Object oSearch is a cWebMenuItem
-36354>>>            Set psCSSClass to "WebPromptMenuItem"
-36355>>>            Set psCaption to "Search"
+36350>>>        WebRegisterPath ntNavigateForward oCarZoom
 36356>>>
-36356>>>            Procedure OnClick
-36359>>>                Send Search of oList
-36360>>>            End_Procedure
-36361>>>
-36361>>>        End_Object 
-36362>>>
-36362>>>        Object oNewButton is a cWebMenuItem
-36364>>>            Set psCSSClass to "WebClearMenuItem"
-36365>>>            Set psCaption to "New"
-36366>>>
-36366>>>            WebRegisterPath ntNavigateForward oCarZoom
-36372>>>
-36372>>>            Procedure OnClick
-36375>>>                Send NavigatePath
-36376>>>            End_Procedure
-36377>>>
-36377>>>            Procedure OnGetNavigateForwardData tWebNavigateData ByRef NavigateData Handle hoToView
-36380>>>                Move True to NavigateData.bNewRecord
-36381>>>            End_Procedure
+36356>>>        Procedure OnRowClick String sRowId
+36359>>>            tWebNavigateData NavigateData
+36359>>>            tWebNavigateData NavigateData
+36359>>>            Get GetNavigateData to NavigateData
+36360>>>
+36360>>>            Case Begin
+36360>>>                Case (NavigateData.eNavigateType = nfFromParent)
+36362>>>                    Send NavigateForward of oCarZoom Self
+36363>>>                    Case Break
+36364>>>
+36364>>>                Case (NavigateData.eNavigateType = nfFromChild)
+36367>>>                    Send NavigateClose Self
+36368>>>                    Case Break
+36369>>>
+36369>>>                Case (NavigateData.eNavigateType = nfFromMain)
+36372>>>                    Send NavigateClose Self
+36373>>>                    Case Break
+36374>>>
+36374>>>                Case Else // must be nfUndefined
+36374>>>                    Send NavigateForward of oCarZoom Self
+36375>>>
+36375>>>            Case End
+36375>>>        End_Procedure
+36376>>>
+36376>>>        Procedure OnGetNavigateForwardData tWebNavigateData ByRef NavigateData Handle hoToView
+36379>>>            Move True to NavigateData.bReadOnly
+36380>>>        End_Procedure
+36381>>>
+36381>>>    End_Object 
 36382>>>
-36382>>>        End_Object 
-36383>>>    End_Object 
+36382>>>    Object oActionGroup is a cWebMenuGroup
 36384>>>
-36384>>>    Procedure OnNavigateForward tWebNavigateData NavigateData Integer hoInvokingView Integer hoInvokingObject
-36387>>>        WebSet pbRender of oNewButton to True
-36388>>>        WebSet pbRender of oDetailButton to True
-36389>>>
-36389>>>        Case Begin
-36389>>>            Case (NavigateData.eNavigateType = nfFromParent)
-36391>>>                // If from parent, this is a constrained drill down
-36391>>>                Case Break
-36392>>>
-36392>>>            Case (NavigateData.eNavigateType = nfFromChild)
-36395>>>                // If from child, this is a probably a parent lookup from a Zoom
-36395>>>                Case Break
-36396>>>
-36396>>>            Case (NavigateData.eNavigateType = nfFromMain)
-36399>>>                // If from main, this is a probably a main-file lookup from a Zoom
-36399>>>                WebSet pbRender of oDetailButton to False
-36400>>>                Case Break
-36401>>>
-36401>>>            Case Else // must be nfUndefined
-36401>>>                // This may be the start of a drilldown query or this may be used for some kind of custom query.
-36401>>>
-36401>>>        Case End
-36401>>>
-36401>>>    End_Procedure
-36402>>>
-36402>>>
-36402>>>End_Object 
-36403>    Set phoDefaultView to oDashboard
-36404>
-36404>End_Object
-36405>
-36405>Send StartWebApp of oWebApp
-36406>
+36384>>>        Object oSearch is a cWebMenuItem
+36386>>>            Set psCSSClass to "WebPromptMenuItem"
+36387>>>            Set psCaption to "Search"
+36388>>>
+36388>>>            Procedure OnClick
+36391>>>                Send Search of oList
+36392>>>            End_Procedure
+36393>>>
+36393>>>        End_Object 
+36394>>>
+36394>>>        Object oNewButton is a cWebMenuItem
+36396>>>            Set psCSSClass to "WebClearMenuItem"
+36397>>>            Set psCaption to "New"
+36398>>>
+36398>>>            WebRegisterPath ntNavigateForward oCarZoom
+36404>>>
+36404>>>            Procedure OnClick
+36407>>>                Send NavigatePath
+36408>>>            End_Procedure
+36409>>>
+36409>>>            Procedure OnGetNavigateForwardData tWebNavigateData ByRef NavigateData Handle hoToView
+36412>>>                Move True to NavigateData.bNewRecord
+36413>>>            End_Procedure
+36414>>>
+36414>>>        End_Object 
+36415>>>    End_Object 
+36416>>>
+36416>>>    Procedure OnNavigateForward tWebNavigateData NavigateData Integer hoInvokingView Integer hoInvokingObject
+36419>>>        WebSet pbRender of oNewButton to True
+36420>>>        WebSet pbRender of oDetailButton to True
+36421>>>
+36421>>>        Case Begin
+36421>>>            Case (NavigateData.eNavigateType = nfFromParent)
+36423>>>                // If from parent, this is a constrained drill down
+36423>>>                Case Break
+36424>>>
+36424>>>            Case (NavigateData.eNavigateType = nfFromChild)
+36427>>>                // If from child, this is a probably a parent lookup from a Zoom
+36427>>>                Case Break
+36428>>>
+36428>>>            Case (NavigateData.eNavigateType = nfFromMain)
+36431>>>                // If from main, this is a probably a main-file lookup from a Zoom
+36431>>>                WebSet pbRender of oDetailButton to False
+36432>>>                Case Break
+36433>>>
+36433>>>            Case Else // must be nfUndefined
+36433>>>                // This may be the start of a drilldown query or this may be used for some kind of custom query.
+36433>>>
+36433>>>        Case End
+36433>>>
+36433>>>    End_Procedure
+36434>>>
+36434>>>
+36434>>>End_Object 
+36435>    Set phoDefaultView to oDashboard
+36436>
+36436>End_Object
+36437>
+36437>Send StartWebApp of oWebApp
+36438>
 Summary
-Memory Available: 20446072832
+Memory Available: 21848670208
 Total Warnings : 0
 Total Errors   : 0
-Total Symbols  : 23677
+Total Symbols  : 23686
 Total Resources: 0
-Total Commands : 36405
+Total Commands : 36437
 Total Windows  : 0
 Total Pages    : 0
-Static Data    : 464153
-Message area   : 253992
-Total Blocks   : 16337
+Static Data    : 464641
+Message area   : 254210
+Total Blocks   : 16349

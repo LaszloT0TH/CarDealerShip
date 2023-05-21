@@ -13,6 +13,7 @@ Use CarZoom.wo
 Use cFuelDataDictionary.dd
 Use cGearboxDataDictionary.dd
 Use cCarsDataDictionary.dd
+Use cWebForm.pkg
 
 Object oCarSelect is a cWebView
     Set psCaption to "Car"
@@ -30,11 +31,95 @@ Object oCarSelect is a cWebView
 
     Object oCars_DD is a cCarsDataDictionary
         Set DDO_Server To oFuel_DD
-        Set DDO_Server To oGearbox_DD
+        Set DDO_Server to oGearbox_DD
+        
+        // EN
+        // Limit the rows to the search value
+        // GE
+        // Zeilen auf den Suchwert beschränken
+        // HU
+        // Korlátozza a sorokat a keresési értékre
+        Procedure OnConstrain
+            String sValue sFilter
+            
+            // EN
+            // The value from whatever was entered. It comes from oWebform1
+            // GE
+            // Der Wert aus dem, was eingegeben wurde. Es kommt von oWebform1
+            // HU
+            // Az érték bármiből, amit beírtak. Az oWebform1-ből származik
+            WebGet psValue of oWebForm1 to sValue
+            Move (Trim(sValue)) to sValue
+            If (sValue > "") Begin                
+                Move "[CarId] LIKE '%@@%' or [Model] LIKE '%@@%' or [Color] LIKE '%@@%' or [NumberOfSeats] LIKE '%@@%'" to sFilter
+                
+                // EN
+                // Replace all with the value entered by the user
+                // GE
+                // Alle durch den vom Benutzer eingegebenen Wert ersetzen
+                // HU
+                // Cserélje le az összeset a felhasználó által beírt értékre
+                Move (Replace("@@", sFilter, sValue)) to sFilter
+                Move (Replace("@@", sFilter, sValue)) to sFilter
+                Move (Replace("@@", sFilter, sValue)) to sFilter
+                Move (Replace("@@", sFilter, sValue)) to sFilter
+                                                
+                // EN
+                // In this case, we want to use the PS SQL filter property of the data dictionary to filter automatically
+                // It only works within a table
+                // GE
+                // In diesem Fall möchten wir die PS-SQL-Filtereigenschaft des Datenwörterbuchs zum automatischen Filtern verwenden
+                // Es funktioniert nur innerhalb einer Tabelle
+                // HU
+                // Ebben az esetben az adatszótár PS SQL filter tulajdonságát szeretnénk használni, hogy automatikus szűrjünk
+                // Csak táblázaton belül működik
+                Set psSQLFilter to sFilter 
+                
+                // EN
+                // We need to configure the data dictionary to use SQL filters
+                // GE
+                // Wir müssen das Datenwörterbuch für die Verwendung von SQL-Filtern konfigurieren
+                // HU
+                // Tályékoztatnunk kell az adatszótárt, hogy használjon SQL szűrőket
+                Set pbUseDDSQLFilters to True
+            End
+            Else Begin
+                Set pbUseDDSQLFilters to False
+            End
+        End_Procedure
     End_Object 
 
     Set Main_DD To oCars_DD
     Set Server  To oCars_DD
+
+    Object oWebForm1 is a cWebForm
+        Set piColumnSpan to 0
+        Set psLabel to "Search"
+        Set peLabelPosition to lpTop
+        Set pbPromptButton to True
+        Procedure OnPrompt
+            // EN
+            // When clicked, we rebuild it according to the search conditions
+            // so we send the constraints to the data dictionary
+            // GE
+            // Wenn darauf geklickt wird, erstellen wir es entsprechend den Suchbedingungen neu
+            // Also senden wir die Einschränkungen an das Datenwörterbuch
+            // HU
+            // Kattintásnál újraépítjük a keresési feltéleknek megfelelően
+            // ezért elküldjük az adatszótárnak a megszorításokat
+            Send Rebuild_Constraints of oCars_DD
+            // EN
+            // The list must be linked again. We find the first record and then rebuild it.
+            // This should be implemented in the data dictionary
+            // GE
+            // Die Liste muss erneut verknüpft werden. Wir finden den ersten Datensatz und erstellen ihn dann neu.
+            // Dies sollte im Datenwörterbuch implementiert werden
+            // HU
+            // A listát újra össze kell kapcsolni. Megkeressük az első rekordot, majd újraépítjük.
+            // Ezt az adatszótárban kell megvalósítani
+            Send Find of oCars_DD FIRST_RECORD 1            
+        End_Procedure
+    End_Object
 
 
     Object oList is a cWebList
@@ -42,7 +127,7 @@ Object oCarSelect is a cWebView
         Set psCSSClass to "MobileList"
         Set pbServerOnRowClick to True
         Set pbFillHeight to True
-        Set pbShowHeader to False
+        Set pbShowHeader to True // Set pbShowHeader to False
         Set piSortColumn to 0
 
         Object oCarsCarId is a cWebColumn
