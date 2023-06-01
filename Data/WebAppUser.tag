@@ -3,3 +3,4 @@ Password
 Rights
 FullName
 LastLogin
+City

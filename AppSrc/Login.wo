@@ -9,7 +9,6 @@ Use cWebImage.pkg
 Object oLogin is a cWebView
     Set piMinWidth to 250
     Set piMaxWidth to 420
-    Set pbLoginModeEnforced to False
     Set piColumnCount to 12
     Set psCSSClass to "LoginView"
     Set pbServerOnSubmit to True
@@ -19,6 +18,8 @@ Object oLogin is a cWebView
     
     { WebProperty=Server }
     Property String psPrevStateHash ""  // Remember the state hash that the user navigated too so we can redirect after login
+
+    Set pbLoginModeEnforced to False
     
     Delegate Set phoLoginView to Self
     
@@ -29,7 +30,7 @@ Object oLogin is a cWebView
     
     Object oWarning is a cWebLabel
         Set pbVisible to False
-        Set psCaption to "Invalid User ID or password. \n\rHint: 'Guest' & 'guest'."
+        Set psCaption to "Invalid User ID or password. \n\rHint: 'Guest' & 'guest'. Or 'admin' & 'admin'"
         Set peAlign to alignCenter
         Set piColumnSpan to 12
         Set psCSSClass to "LoginWarning"
@@ -37,10 +38,10 @@ Object oLogin is a cWebView
     
     Object oLogo is a cWebImage
         Set piColumnSpan to 10
-        Set psUrl to "images/DF_Logo_Retina.png"
+        Set psUrl to "images/car1.png"
         Set pePosition to wiFit
+        Set piHeight to 200
         Set piColumnIndex to 1
-        Set piHeight to 160
         
         WebSetResponsive piHeight rmMobile to 100  // Best for small smart phones
     End_Object
@@ -83,6 +84,10 @@ Object oLogin is a cWebView
         
         Procedure OnClick
             Send DoLogin
+        End_Procedure
+
+        Procedure OnFocus
+            Forward Send OnFocus
         End_Procedure
     End_Object
     

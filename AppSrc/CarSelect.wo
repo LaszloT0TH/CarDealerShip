@@ -89,7 +89,23 @@ Object oCarSelect is a cWebView
         End_Procedure
     End_Object 
 
-    Set Main_DD To oCars_DD
+    // EN
+    // Main_DD startet die Ansicht, führt alle Einschränkungen aus,
+    // stellt sicher, dass Sie auf die Daten in den Ansichten zugreifen können
+    // GE
+    // Main_DD startet die Ansicht, führt alle Einschränkungen aus,
+    // stellt sicher, dass Sie auf die Daten in den Ansichten zugreifen können
+    // HU
+    // a Main_DD indítja el a nézetet, megtesz minden korlátozást,
+    // gondoskodik arról, hogy hozzáférhessen az adatokhoz a nézetekben
+    Set Main_DD to oCars_DD
+    
+    // EN
+    // If we change something and want to save it, the Server takes care of it
+    // GE
+    // Wenn wir etwas ändern und es speichern wollen, kümmert sich der Server darum
+    // HU
+    // Ha meváltoztatunk valamit és el szeretnénk menteni, arról a Server gondoskodik
     Set Server  To oCars_DD
 
     Object oWebForm1 is a cWebForm
@@ -131,39 +147,46 @@ Object oCarSelect is a cWebView
         Set piSortColumn to 0
 
         Object oCarsCarId is a cWebColumn
+            
+            // EN
+            // Entry_Item can also be replaced with a Procedure
+            // GE
+            // Entry_Item kann auch durch eine Prozedur ersetzt werden
+            // HU
+            // egy Procedure-rel is helyettesíthető az Entry_Item 
             Entry_Item Cars.CarId
-            Set psCaption to "Cars.CarId"
+            Set psCaption to "CarId"
             Set piWidth to 100
         End_Object 
 
         Object oCarsModel is a cWebColumn
             Entry_Item Cars.Model
-            Set psCaption to "Cars.Model"
+            Set psCaption to "Model"
             Set piWidth to 200
         End_Object 
 
         Object oCarsColor is a cWebColumn
             Entry_Item Cars.Color
-            Set psCaption to "Cars.Color"
+            Set psCaption to "Color"
             Set piWidth to 200
         End_Object 
 
         Object oFuelFuelName is a cWebColumn
             Entry_Item Fuel.FuelName
-            Set psCaption to "Fuel.FuelName"
-            Set piWidth to 200
+            Set psCaption to "Fuel"
+            Set piWidth to 100
         End_Object 
 
         Object oGearboxGearboxName is a cWebColumn
             Entry_Item Gearbox.GearboxName
-            Set psCaption to "Gearbox.GearboxName"
-            Set piWidth to 100
+            Set psCaption to "Gearbox"
+            Set piWidth to 130
         End_Object 
 
         Object oCarsNumberOfSeats is a cWebColumn
             Entry_Item Cars.NumberOfSeats
-            Set psCaption to "Cars.NumberOfSeats"
-            Set piWidth to 100
+            Set psCaption to "NumberOfSeats"
+            Set piWidth to 200
         End_Object 
 
         Object oDetailButton is a cWebColumnButton

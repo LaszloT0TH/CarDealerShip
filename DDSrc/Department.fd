@@ -1,0 +1,4 @@
+#REPLACE FILE5 Department
+#REPLACE Department.File_Number |CI5
+#REPLACE Department.DepartmentId |FN5,1
+#REPLACE Department.DepartmentName |FS5,2

@@ -35,6 +35,17 @@
 			</DDClasses>
 		</Table>
 		<Table>
+			<tableNumber>5</tableNumber>
+			<tableName>Department</tableName>
+			<DDClasses>
+				<DDClass>
+					<className>cDepartmentDataDictionary</className>
+					<classFile>cDepartmentDataDictionary.dd</classFile>
+					<preferred>true</preferred>
+				</DDClass>
+			</DDClasses>
+		</Table>
+		<Table>
 			<tableNumber>263</tableNumber>
 			<tableName>WebAppSession</tableName>
 			<DDClasses>
@@ -52,6 +63,17 @@
 				<DDClass>
 					<className>cWebAppUserDataDictionary</className>
 					<classFile>cWebAppUserDataDictionary.dd</classFile>
+					<preferred>true</preferred>
+				</DDClass>
+			</DDClasses>
+		</Table>
+		<Table>
+			<tableNumber>265</tableNumber>
+			<tableName>WebAppServerProps</tableName>
+			<DDClasses>
+				<DDClass>
+					<className>cWebAppServerPropsDataDictionary</className>
+					<classFile>cWebAppServerPropsDataDictionary.dd</classFile>
 					<preferred>true</preferred>
 				</DDClass>
 			</DDClasses>

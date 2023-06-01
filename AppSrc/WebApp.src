@@ -17,7 +17,6 @@ Object oWebApp is a cWebApp
     Set peApplicationStyle to wvsDrillDown   
     Set peApplicationStateMode to asmHistoryAndUrls 
     Set psEncryptPassword to "a@_WPP&qv[0H-@8v5(\Z,#{Hsq%dH\tTSi|Iq60f"
-    Set peLoginMode to lmLoginSupported
 
     Object oViewStack is a cWebViewStack
     End_Object
@@ -80,6 +79,28 @@ Object oWebApp is a cWebApp
                         Set psCaption to "Car"
 
                         WebRegisterPath ntNavigateBegin oCarSelect
+
+                        Procedure OnClick
+                            Forward Send OnClick
+                                Send NavigatePath
+                        End_Procedure
+                    End_Object
+
+                    Object oDepartmentItem1 is a cWebMenuItem
+                        Set psCaption to "Department"
+
+                        WebRegisterPath ntNavigateBegin oDepartmentSelect
+
+                        Procedure OnClick
+                            Forward Send OnClick
+                                Send NavigatePath
+                        End_Procedure
+                    End_Object
+
+                    Object oDepartmentItem2 is a cWebMenuItem
+                        Set psCaption to "Department"
+
+                        WebRegisterPath ntNavigateBegin oDepartmentSelect
 
                         Procedure OnClick
                             Forward Send OnClick
@@ -173,6 +194,8 @@ Object oWebApp is a cWebApp
     Use GearboxSelect.wo
     Use CarZoom.wo
     Use CarSelect.wo
+    Use DepartmentZoom.wo
+    Use DepartmentSelect.wo
     Set phoDefaultView to oDashboard
 
 End_Object

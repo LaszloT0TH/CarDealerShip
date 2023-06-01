@@ -39,6 +39,7 @@ Class cCarsDataDictionary is a DataDictionary
         Set Field_Option Field Cars.Model DD_REQUIRED to True
 
         Set Field_Value_Table Field Cars.NumberOfSeats to NumberOfSeats
+        Set Field_Class_Name Field Cars.NumberOfSeats to "Combo"
 
     End_Procedure
 

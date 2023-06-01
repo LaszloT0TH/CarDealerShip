@@ -10,6 +10,8 @@ Use cWebMenuItem.pkg
 Use cWebLabel.pkg
 Use cWebList.pkg
 Use cWebColumn.pkg
+Use cWebHtmlList.pkg
+
 
 Object oDashboard is a cWebView
 
@@ -36,6 +38,31 @@ Object oDashboard is a cWebView
     
     Object oWebMainPanel is a cWebPanel
         Set piColumnCount to 24
+
+        Object oInfos is a cWebHtmlBox
+            Set piColumnSpan to 10
+            Set psCSSClass to "Tile Light"
+            Set psHtml to '<div Class="WebCon_Sizer"><div class="Tile_Title">Infos</div><div Class="Tile_Subtitle">--</div></div>'
+            Set piColumnIndex to 1
+
+            Procedure OnLoad
+                Send UpdateHTML ('<div class="WebCon_Sizer">' + ;
+                                 '<div class="Tile_Title">Infos</div>' +;
+                                 '<div class="Tile_Subtitle">' - htmlEncode(psUsername(ghoWebSessionManager)) - '</div>' +;
+                                 '<div class="Tile_Title">City</div>' +;
+                                 '<div class="Tile_Subtitle">' - htmlEncode(WebAppUser.City) - '</div>' +;
+                                 '<div class="Tile_Title">Password</div>' +;
+                                 '<div class="Tile_Subtitle">' - htmlEncode(WebAppUser.Password) - '</div>' +;
+                                 '<div class="Tile_Title">Encrypt Password</div>' +;
+                                 '<div class="Tile_Subtitle">' - htmlEncode(psEncryptPassword(ghoWebSessionManager)) - '</div>' +;
+                                 '</div>')
+            End_Procedure
+
+            Procedure OnClick String sId String sParam
+                Forward Send OnClick sId sParam
+            End_Procedure
+            
+        End_Object
         
         // - - - - - - - - - - - - - - -
         // Main Panel's Responsive Rules
@@ -47,28 +74,14 @@ Object oDashboard is a cWebView
             Set piColumnSpan to 8
             Set pbShowBorder to False
             Set pbShowCaption to False
-            Set piColumnCount to 12
+            Set piColumnCount to 4
             
             Set psCSSClass to "TilesGroup"
-    
-            Object oWelcomeTile is a cWebHtmlBox
-                Set piColumnSpan to 6
-                Set psCSSClass to "Tile Light"
-                Set psHtml to '<div Class="WebCon_Sizer"><div class="Tile_Title">Welcome</div><div Class="Tile_Subtitle">--</div></div>'
-    
-                Procedure OnLoad
-                    Send UpdateHTML ('<div class="WebCon_Sizer">' + ;
-                                     '<div class="Tile_Title">Welcome</div>' +;
-                                     '<div class="Tile_Subtitle">' - htmlEncode(psUserName(ghoWebSessionManager)) - '</div>' +;
-                                     '</div>')
-                End_Procedure
-                
-            End_Object
+            Set piColumnIndex to 2
     
             Object oTile2 is a cWebHtmlBox
                 Set pbServerOnClick to True
                 Set piColumnSpan to 6
-                Set piColumnIndex to 6
                 Set psCSSClass to "Tile LightAlternate"
                 Set psHtml to '<div class="WebCon_Sizer" data-ServerOnClick="openview"><div Class="Tile_Title">Cars</div><div class="Tile_Subtitle"></div></div>'
                                 
@@ -109,8 +122,22 @@ Object oDashboard is a cWebView
                 
             End_Object
             
+            Object oTile5 is a cWebHtmlBox
+                Set pbServerOnClick to True
+                Set piColumnSpan to 6
+                Set piColumnIndex to 6
+                Set psCSSClass to "Tile DarkAlternate"
+                Set psHtml to '<div class="WebCon_Sizer" data-ServerOnClick="openview"><div Class="Tile_Title">Department</div><div class="Tile_Subtitle"></div></div>'
+            
+                WebRegisterPath ntNavigateForwardCustom oDepartmentSelect
+                
+                Procedure OnClick String sId String sParam
+                    Send NavigatePath
+                End_Procedure
+                
+            End_Object
         End_Object
-    
+
     End_Object
     
     Procedure OnBeforeShow
