@@ -1,0 +1,31 @@
+-----------------------------------------------------------------------------
+  DATE: 02.06.2023      TIME: 09:17                                  PAGE:  1
+  FILE DEFINITION FOR FILE: Department (# 5)
+-----------------------------------------------------------------------------
+  DRIVER NAME               : MSSQLDRV
+  FILE ROOT NAME            : MSSQLDRV:Department
+  USER DISPLAY NAME         : Department
+  DATAFLEX FILE NAME        : Department
+-----------------------------------------------------------------------------
+  RECORD LENGTH             : 41        ( USED: 41 )
+  MAX NUMBER OF RECORDS     : 2147483647  ( USED: 3 )
+  FILE COMPRESSION          : NONE
+  RE-USE DELETED SPACE      : YES
+  LOCKING TYPE              : RECORD
+  HEADER INTEGRITY CHECKING : NO 
+  TRANSACTION TYPE          : SERVER LOGGED
+  RECORD IDENTITY INDEX     : 1 ( 0 , 0 )
+  FILE LOGIN PARAMETER      : DFCONNID=dataflexDemo
+  SYSTEM FILE               : NO 
+-----------------------------------------------------------------------------
+
+NUM  FIELD NAME       TYPE SIZE  OFFST IX   RELATES TO FILE.FIELD
+---  ---------------  ---- ----- ----- --   ---------------------------------
+  1  DepartmentId     NUM   10.0     1  1   
+  2  DepartmentName   ASC     30    12      
+
+
+INDEX# FIELDS          DES U/C    LENGTH LEVELS SEGMENTS MODE
+------ --------------- --- ---    ------ ------ -------- -------
+  1    DepartmentId    NO  NO       0      0       1     ON-LINE
+

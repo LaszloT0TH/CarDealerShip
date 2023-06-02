@@ -13,6 +13,9 @@ Use CarZoom.wo
 Use cFuelDataDictionary.dd
 Use cGearboxDataDictionary.dd
 Use cCarsDataDictionary.dd
+Use cDepartmentDataDictionary.dd
+Use cWebAppUserDataDictionary.dd
+Use cWebAppSessionDD.dd
 Use cWebForm.pkg
 
 Object oCarSelect is a cWebView
@@ -22,6 +25,17 @@ Object oCarSelect is a cWebView
     Set piColumnCount to 12
     Set pbShowCaption to False
     Set piMaxWidth to 1024
+
+    Object oDepartment_DD is a cDepartmentDataDictionary
+    End_Object
+
+    Object oWebAppUser_DD is a cWebAppUserDataDictionary
+        Set DDO_Server to oDepartment_DD
+    End_Object
+
+    Object oWebAppSession_DD is a cWebAppSessionDD
+        Set DDO_Server to oWebAppUser_DD
+    End_Object
 
     Object oFuel_DD is a cFuelDataDictionary
     End_Object 

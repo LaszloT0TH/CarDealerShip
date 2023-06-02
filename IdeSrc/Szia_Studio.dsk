@@ -7,26 +7,15 @@ GroupCount=1
 HorizontalGroups=1
 [TabGroup0]
 GroupSize=40
-SelectedTab=1
+SelectedTab=0
 [Window0]
-Filename=C:\Users\user\Desktop\Apa pendrive\DataFlex\Projects\CarDealerShip\AppSrc\WebApp.src
+Filename=C:\Users\user\Desktop\Apa pendrive\DataFlex\Projects\CarDealerShip\AppSrc\Login.wo
 ViewType=1
 Top=21
 Left=0
-Bottom=805
-Right=1449
-CursorLine=185
+Bottom=620
+Right=853
+CursorLine=0
 CursorColumn=0
 TabIndex=0
-TabGroup=0
-[Window1]
-Filename=C:\Users\user\Desktop\Apa pendrive\DataFlex\Projects\CarDealerShip\AppSrc\Dashboard.wo
-ViewType=1
-Top=21
-Left=0
-Bottom=805
-Right=1449
-CursorLine=79
-CursorColumn=34
-TabIndex=1
 TabGroup=0

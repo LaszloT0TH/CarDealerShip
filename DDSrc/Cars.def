@@ -1,0 +1,60 @@
+-----------------------------------------------------------------------------
+  DATE: 02.06.2023      TIME: 09:17                                  PAGE:  1
+  FILE DEFINITION FOR FILE: Cars (# 4)
+-----------------------------------------------------------------------------
+  DRIVER NAME               : MSSQLDRV
+  FILE ROOT NAME            : MSSQLDRV:Cars
+  USER DISPLAY NAME         : Cars
+  DATAFLEX FILE NAME        : Cars
+-----------------------------------------------------------------------------
+  RECORD LENGTH             : 84        ( USED: 84 )
+  MAX NUMBER OF RECORDS     : 2147483647  ( USED: 8 )
+  FILE COMPRESSION          : NONE
+  RE-USE DELETED SPACE      : YES
+  LOCKING TYPE              : RECORD
+  HEADER INTEGRITY CHECKING : NO 
+  TRANSACTION TYPE          : SERVER LOGGED
+  RECORD IDENTITY INDEX     : 1 ( 0 , 0 )
+  FILE LOGIN PARAMETER      : DFCONNID=dataflexDemo
+  SYSTEM FILE               : NO 
+-----------------------------------------------------------------------------
+
+NUM  FIELD NAME       TYPE SIZE  OFFST IX   RELATES TO FILE.FIELD
+---  ---------------  ---- ----- ----- --   ---------------------------------
+  1  CarId            NUM   10.0     1  1   
+  2  Model            ASC     20    12  2   
+  3  Color            ASC     20    32  3   
+  4  FuelId           NUM   10.0    52  4   Fuel.FIELD_1 (2,1)
+  5  GearboxId        NUM   10.0    63  5   Gearbox.FIELD_1 (3,1)
+  6  NumberOfSeats    NUM   10.0    74  6   
+
+
+INDEX# FIELDS          DES U/C    LENGTH LEVELS SEGMENTS MODE
+------ --------------- --- ---    ------ ------ -------- -------
+  1    CarId           NO  NO       0      0       1     ON-LINE
+
+  2    Model           NO  NO       0      0       2     ON-LINE
+       CarId           NO  NO 
+
+  3    Color           NO  NO       0      0       3     ON-LINE
+       Model           NO  NO 
+       CarId           NO  NO 
+
+  4    FuelId          NO  NO       0      0       4     ON-LINE
+       Color           NO  NO 
+       Model           NO  NO 
+       CarId           NO  NO 
+
+  5    GearboxId       NO  NO       0      0       5     ON-LINE
+       FuelId          NO  NO 
+       Color           NO  NO 
+       Model           NO  NO 
+       CarId           NO  NO 
+
+  6    NumberOfSeats   NO  NO       0      0       6     ON-LINE
+       GearboxId       NO  NO 
+       FuelId          NO  NO 
+       Color           NO  NO 
+       Model           NO  NO 
+       CarId           NO  NO 
+

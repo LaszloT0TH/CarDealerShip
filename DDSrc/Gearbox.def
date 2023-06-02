@@ -1,0 +1,34 @@
+-----------------------------------------------------------------------------
+  DATE: 02.06.2023      TIME: 09:17                                  PAGE:  1
+  FILE DEFINITION FOR FILE: Gearbox (# 3)
+-----------------------------------------------------------------------------
+  DRIVER NAME               : MSSQLDRV
+  FILE ROOT NAME            : MSSQLDRV:Gearbox
+  USER DISPLAY NAME         : Gearbox
+  DATAFLEX FILE NAME        : Gearbox
+-----------------------------------------------------------------------------
+  RECORD LENGTH             : 21        ( USED: 21 )
+  MAX NUMBER OF RECORDS     : 2147483647  ( USED: 3 )
+  FILE COMPRESSION          : NONE
+  RE-USE DELETED SPACE      : YES
+  LOCKING TYPE              : RECORD
+  HEADER INTEGRITY CHECKING : NO 
+  TRANSACTION TYPE          : SERVER LOGGED
+  RECORD IDENTITY INDEX     : 1 ( 0 , 0 )
+  FILE LOGIN PARAMETER      : DFCONNID=dataflexDemo
+  SYSTEM FILE               : NO 
+-----------------------------------------------------------------------------
+
+NUM  FIELD NAME       TYPE SIZE  OFFST IX   RELATES TO FILE.FIELD
+---  ---------------  ---- ----- ----- --   ---------------------------------
+  1  GearboxId        NUM   10.0     1  1   
+  2  GearboxName      ASC     10    12  2   
+
+
+INDEX# FIELDS          DES U/C    LENGTH LEVELS SEGMENTS MODE
+------ --------------- --- ---    ------ ------ -------- -------
+  1    GearboxId       NO  NO       0      0       1     ON-LINE
+
+  2    GearboxName     NO  NO       0      0       2     ON-LINE
+       GearboxId       NO  NO 
+
