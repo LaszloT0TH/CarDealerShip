@@ -4,6 +4,15 @@ Open WebAppUser
 Open WebAppSession
 Open Department
 
+Object Departement is a ValidationTable
+    Procedure Fill_List
+        Forward Send Fill_List
+        Send Add_Table_Value "IT"
+        Send Add_Table_Value "HR"
+        Send Add_Table_Value "Payroll"
+    End_Procedure
+End_Object
+
 { ClassLibrary=WebApp }
 { HelpTopic=cWebAppUserDataDictionary }
 Class cWebAppUserDataDictionary is a DataDictionary
@@ -18,6 +27,8 @@ Class cWebAppUserDataDictionary is a DataDictionary
         Set Foreign_Field_Option DD_KEYFIELD DD_FINDREQ to True
         Set Foreign_Field_Option DD_INDEXFIELD DD_NOPUT to True
         Set Foreign_Field_Option DD_DEFAULT DD_DISPLAYONLY to True
+
+        Set Field_Value_Table Field WebAppUser.Department to Departement
     End_Procedure
 
 End_Class

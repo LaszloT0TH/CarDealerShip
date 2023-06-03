@@ -1,5 +1,5 @@
 -----------------------------------------------------------------------------
-  DATE: 02.06.2023      TIME: 09:17                                  PAGE:  1
+  DATE: 03.06.2023      TIME: 16:39                                  PAGE:  1
   FILE DEFINITION FOR FILE: SysFile (# 1)
 -----------------------------------------------------------------------------
   DRIVER NAME               : MSSQLDRV
@@ -7,7 +7,7 @@
   USER DISPLAY NAME         : SysFile
   DATAFLEX FILE NAME        : SysFile
 -----------------------------------------------------------------------------
-  RECORD LENGTH             : 44        ( USED: 44 )
+  RECORD LENGTH             : 33        ( USED: 33 )
   MAX NUMBER OF RECORDS     : 2147483647  ( USED: 1 )
   FILE COMPRESSION          : NONE
   RE-USE DELETED SPACE      : YES
@@ -24,5 +24,4 @@ NUM  FIELD NAME       TYPE SIZE  OFFST IX   RELATES TO FILE.FIELD
   1  FuelId           NUM   10.0     1      
   2  GearboxId        NUM   10.0    12      
   3  CarId            NUM   10.0    23      
-  4  DepartmentId     NUM   10.0    34      
 

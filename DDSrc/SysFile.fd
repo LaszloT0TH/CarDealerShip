@@ -3,4 +3,3 @@
 #REPLACE SysFile.FuelId |FN1,1
 #REPLACE SysFile.GearboxId |FN1,2
 #REPLACE SysFile.CarId |FN1,3
-#REPLACE SysFile.DepartmentId |FN1,4

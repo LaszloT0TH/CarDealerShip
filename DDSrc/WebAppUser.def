@@ -1,5 +1,5 @@
 -----------------------------------------------------------------------------
-  DATE: 02.06.2023      TIME: 09:17                                  PAGE:  1
+  DATE: 03.06.2023      TIME: 16:37                                  PAGE:  1
   FILE DEFINITION FOR FILE: WebAppUser (# 264)
 -----------------------------------------------------------------------------
   DRIVER NAME               : MSSQLDRV
@@ -7,7 +7,7 @@
   USER DISPLAY NAME         : WebApp User
   DATAFLEX FILE NAME        : WebAppUser
 -----------------------------------------------------------------------------
-  RECORD LENGTH             : 332       ( USED: 332 )
+  RECORD LENGTH             : 331       ( USED: 331 )
   MAX NUMBER OF RECORDS     : 2147483647  ( USED: 3 )
   FILE COMPRESSION          : NONE
   RE-USE DELETED SPACE      : YES
@@ -28,7 +28,7 @@ NUM  FIELD NAME       TYPE SIZE  OFFST IX   RELATES TO FILE.FIELD
   5  LastLogin        DAT     10   257      
   6  City             ASC     30   273      
   7  DOB              DTM     23   303      
-  8  Department       NUM   10.0   322      
+  8  Department       ASC     10   322      
 
 
 INDEX# FIELDS          DES U/C    LENGTH LEVELS SEGMENTS MODE

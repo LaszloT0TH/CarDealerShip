@@ -1,5 +1,5 @@
 -----------------------------------------------------------------------------
-  DATE: 02.06.2023      TIME: 09:17                                  PAGE:  1
+  DATE: 03.06.2023      TIME: 14:56                                  PAGE:  1
   FILE DEFINITION FOR FILE: WebAppSession (# 263)
 -----------------------------------------------------------------------------
   DRIVER NAME               : MSSQLDRV
@@ -8,7 +8,7 @@
   DATAFLEX FILE NAME        : WebAppSession
 -----------------------------------------------------------------------------
   RECORD LENGTH             : 173       ( USED: 173 )
-  MAX NUMBER OF RECORDS     : 2147483647  ( USED: 19 )
+  MAX NUMBER OF RECORDS     : 2147483647  ( USED: 21 )
   FILE COMPRESSION          : NONE
   RE-USE DELETED SPACE      : YES
   LOCKING TYPE              : RECORD

@@ -35,17 +35,6 @@
 			</DDClasses>
 		</Table>
 		<Table>
-			<tableNumber>5</tableNumber>
-			<tableName>Department</tableName>
-			<DDClasses>
-				<DDClass>
-					<className>cDepartmentDataDictionary</className>
-					<classFile>cDepartmentDataDictionary.dd</classFile>
-					<preferred>true</preferred>
-				</DDClass>
-			</DDClasses>
-		</Table>
-		<Table>
 			<tableNumber>263</tableNumber>
 			<tableName>WebAppSession</tableName>
 			<DDClasses>

@@ -7,4 +7,4 @@
 #REPLACE WebAppUser.LastLogin |FD264,5
 #REPLACE WebAppUser.City |FS264,6
 #REPLACE WebAppUser.DOB |FM264,7
-#REPLACE WebAppUser.Department |FN264,8
+#REPLACE WebAppUser.Department |FS264,8

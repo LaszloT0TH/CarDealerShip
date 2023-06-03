@@ -1,5 +1,5 @@
 -----------------------------------------------------------------------------
-  DATE: 02.06.2023      TIME: 09:17                                  PAGE:  1
+  DATE: 03.06.2023      TIME: 14:56                                  PAGE:  1
   FILE DEFINITION FOR FILE: WebAppServerProps (# 265)
 -----------------------------------------------------------------------------
   DRIVER NAME               : MSSQLDRV
@@ -8,7 +8,7 @@
   DATAFLEX FILE NAME        : WebAppServerProps
 -----------------------------------------------------------------------------
   RECORD LENGTH             : 16549     ( USED: 16549 )
-  MAX NUMBER OF RECORDS     : 2147483647  ( USED: 30 )
+  MAX NUMBER OF RECORDS     : 2147483647  ( USED: 36 )
   FILE COMPRESSION          : NONE
   RE-USE DELETED SPACE      : YES
   LOCKING TYPE              : RECORD
