@@ -1,4 +1,4 @@
 #REPLACE FILE3 Gearbox
-#REPLACE Gearbox.File_Number |CI3
+#REPLACE Gearbox.Recnum |FN3,0
 #REPLACE Gearbox.GearboxId |FN3,1
 #REPLACE Gearbox.GearboxName |FS3,2

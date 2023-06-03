@@ -1,5 +1,5 @@
 #REPLACE FILE4 Cars
-#REPLACE Cars.File_Number |CI4
+#REPLACE Cars.Recnum |FN4,0
 #REPLACE Cars.CarId |FN4,1
 #REPLACE Cars.Model |FS4,2
 #REPLACE Cars.Color |FS4,3

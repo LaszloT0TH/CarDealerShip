@@ -1,0 +1,61 @@
+////////////////////////////////////////////////////////////
+Starting conversion at 17:02 on 03.06.2023
+////////////////////////////////////////////////////////////
+Converting table: 1, SysFile to DataFlex
+Copy records
+Copying record
+1 of 1 records copied successfully.
+Deleting original table.
+Output c:\Users\user\Desktop\apa pendrive\DataFlex\Projects\cardealership\DDSrc\\SysFile.fd for SysFile
+Converting table: 2, Fuel to DataFlex
+Copy records
+Copying record
+4 of 4 records copied successfully.
+Deleting original table.
+Output c:\Users\user\Desktop\apa pendrive\DataFlex\Projects\cardealership\DDSrc\\Fuel.fd for Fuel
+Converting table: 3, Gearbox to DataFlex
+Copy records
+Copying record
+3 of 3 records copied successfully.
+Deleting original table.
+Output c:\Users\user\Desktop\apa pendrive\DataFlex\Projects\cardealership\DDSrc\\Gearbox.fd for Gearbox
+Converting table: 4, Cars to DataFlex
+Copy records
+Copying record
+8 of 8 records copied successfully.
+Deleting original table.
+Output c:\Users\user\Desktop\apa pendrive\DataFlex\Projects\cardealership\DDSrc\\Cars.fd for Cars
+Converting table: 253, Code Maintenance Type Table to DataFlex
+Copy records
+Copying record
+0 of 0 records copied successfully.
+Deleting original table.
+Output c:\Users\user\Desktop\apa pendrive\DataFlex\Projects\cardealership\DDSrc\\CodeType.fd for Code Maintenance Type Table
+Converting table: 254, Code Maintenance Code Table to DataFlex
+Copy records
+Copying record
+0 of 0 records copied successfully.
+Deleting original table.
+Output c:\Users\user\Desktop\apa pendrive\DataFlex\Projects\cardealership\DDSrc\\CodeMast.fd for Code Maintenance Code Table
+Converting table: 263, WebApp Session to DataFlex
+Copy records
+Copying record
+21 of 21 records copied successfully.
+Deleting original table.
+Output c:\Users\user\Desktop\apa pendrive\DataFlex\Projects\cardealership\DDSrc\\WebAppSession.fd for WebApp Session
+Converting table: 264, WebApp User to DataFlex
+Copy records
+Copying record
+3 of 3 records copied successfully.
+Deleting original table.
+Output c:\Users\user\Desktop\apa pendrive\DataFlex\Projects\cardealership\DDSrc\\WebAppUser.fd for WebApp User
+Converting table: 265, WebApp Server Props to DataFlex
+Copy records
+Copying record
+36 of 36 records copied successfully.
+Deleting original table.
+Output c:\Users\user\Desktop\apa pendrive\DataFlex\Projects\cardealership\DDSrc\\WebAppServerProps.fd for WebApp Server Props
+Conversion to DataFlex is ready.
+////////////////////////////////////////////////////////////
+Finished conversion at 17:02 on 03.06.2023
+////////////////////////////////////////////////////////////

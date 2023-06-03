@@ -4,3 +4,5 @@ Rights
 FullName
 LastLogin
 City
+DOB
+Department
